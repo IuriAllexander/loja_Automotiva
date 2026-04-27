@@ -1,0 +1,29 @@
+# Arquivos e pastas do Python
+__pycache__/
+*.py[cod]
+*$py.class
+# Ambientes virtuais
+.venv/
+# Arquivos de log
+*.log
+# Configurações locais e arquivos sensíveis
+local_settings.py
+*.env
+# Banco de dados SQLite
+db.sqlite3
+# Diretórios de mídia e estáticos gerados
+media/
+staticfiles/
+# Relatórios de cobertura de testes
+coverage
+coverage.*
+cache/
+nosetests.xml
+coverage.xml
+# Checkpoints do Jupyter Notebook
+ipynb_checkpoints/
+# Arquivos do sistema operacional
+DS_Store
+Thumbs.db
+# Ferramentas específicas (exemplo: PyCharm)
+idea/
