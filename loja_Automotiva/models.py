@@ -3,6 +3,10 @@ from django.urls import reverse
 
 # Create your models here.
 
+
+
+
+
 class Categoria (models.Model):
     nome = models.CharField(max_length=150, unique=True)
     descricao = models.TextField(blank=True, null=True)
