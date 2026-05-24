@@ -3,10 +3,6 @@ from django.urls import reverse
 
 # Create your models here.
 
-
-
-
-
 class Categoria (models.Model):
     nome = models.CharField(max_length=150, unique=True)
     descricao = models.TextField(blank=True, null=True)
@@ -35,22 +31,22 @@ class Meta:
     ordering = ['nome']
     
 
-class Personalização(models.Model):
-    Tipo = models.CharField(max_length=150)
-    Tamanho = models.CharField(max_length=150)
-    Marca = models.CharField(max_length=150)
+class Personalizacao(models.Model):
+    tipo = models.CharField(max_length=150)
+    tamanho = models.CharField(max_length=150)
+    marca = models.CharField(max_length=150)
 
     def __str__(self):
-        return self.Tipo
+        return self.tipo
 
 class Meta:
-    verbose_name = 'Personalização',
+    verbose_name = 'Personalizacao',
     verbose_name_plural = 'Personalizações',
     ordering = ['nome']
 
 
 
-class loja_Automotiva(models.Model):
+class Loja_Automotiva(models.Model):
     nome = models.CharField('Loja', max_length=150, unique=True)
     endereco = models.CharField('Endereço', max_length=200)
     telefone = models.CharField('Telefone', max_length=20)
@@ -58,31 +54,33 @@ class loja_Automotiva(models.Model):
     categoria = models.ForeignKey(
         Categoria,
         on_delete=models.PROTECT,
-        related_name='loja_Automotiva',
+        related_name='Loja_Automotiva',
         verbose_name='Categoria',
     )
 
     fabricante = models.ForeignKey(
         Fabricante,
         on_delete=models.PROTECT,
-        related_name='loja_Automotiva',
+        related_name='Loja_Automotiva',
         verbose_name='Fabricante',
     )
 
-    personalização = models.ForeignKey(
-        Personalização,
+    personalizacao = models.ForeignKey(
+        Personalizacao,
         on_delete=models.PROTECT,
-        related_name='loja_Automotiva',
-        verbose_name='Personalização',
+        related_name='Loja_Automotiva',
+        verbose_name='Personalizacao',
+        null=True,
+        blank=True
     )
 
     def __str__(self):
         return self.nome
 
     def get_absolute_url(self):
-        return reverse('loja_Automotiva', kwargs={'pk': self.pk})
+        return reverse('Loja_Automotiva', kwargs={'pk': self.pk})
 
 class Meta:
-    verbose_name = 'loja_Automotiva',
-    verbose_name_plural = 'loja_Automotivas'
+    verbose_name = 'Loja_Automotiva',
+    verbose_name_plural = 'Loja_Automotivas',
     ordering = ['nome']
