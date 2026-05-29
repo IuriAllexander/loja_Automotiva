@@ -1,11 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marquinhos Autopeças</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
+
 <body>
-    
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header" aria-label="Cabeçalho principal">
+
+      <div class="logo" aria-label="Logo do site">
+        Marquinhos<span>Autopeças</span>
+      </div>
+
+      <nav class="nav" aria-label="Menu principal">
+        <a href="#">Início</a>
+        <a href="#">Produtos</a>
+        <a href="#">Serviços</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+      </nav>
+
+      <div class="actions">
+        <button>Login</button>
+        <button class="btn-primary">Cadastrar</button>
+      </div>
+
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Destaque principal">
+
+      <div class="hero-text">
+        <h1>
+          Peças automotivas de <span>alta performance</span>
+        </h1>
+
+        <p>
+          Encontre tudo para manutenção e upgrade do seu veículo em um só lugar.
+        </p>
+
+        <button class="btn-secondary" aria-label="Ver produtos disponíveis">
+          Ver Produtos
+        </button>
+      </div>
+
+    </section>
+
+    <!-- PRODUTOS -->
+    <section class="products" aria-label="Produtos em destaque">
+
+      <h2>Destaques</h2>
+
+      <div class="product-grid">
+
+        <article class="card">
+          <div class="img"></div>
+          <span class="tag">Freios</span>
+          <h3>Kit Freio Esportivo</h3>
+          <p>Alta performance e segurança.</p>
+          <span>R$ 499,90</span>
+        </article>
+
+        <article class="card">
+          <div class="img"></div>
+          <span class="tag">Motor</span>
+          <h3>Filtro de Ar Esportivo</h3>
+          <p>Melhor fluxo de ar para motor.</p>
+          <span>R$ 129,90</span>
+        </article>
+
+        <article class="card">
+          <div class="img"></div>
+          <span class="tag">Lubrificação</span>
+          <h3>Óleo Sintético Premium</h3>
+          <p>Proteção máxima do motor.</p>
+          <span>R$ 89,90</span>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" aria-label="Rodapé">
+
+      <p>© 2026 Marquinhos Autopeças</p>
+      <p>Desenvolvido para alta performance automotiva 🏁</p>
+
+    </footer>
+
+  </div>
+
 </body>
 </html>
