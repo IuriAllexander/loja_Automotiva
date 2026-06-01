@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 # Ambientes virtuais
 .venv/
+venv/
 # Arquivos de log
 *.log
 # Configurações locais e arquivos sensíveis

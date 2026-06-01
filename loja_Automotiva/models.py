@@ -29,56 +29,69 @@ class Meta:
     verbose_name = 'Fabricante',
     verbose_name_plural = 'Fabricantes',
     ordering = ['nome']
+
+class Pedido(models.Model):
+    Id_Pedido = models.DecimalField('id_pedido', max_digits = 11 ,decimal_places=0)
+    valor_total = models.DecimalField('valor_total', max_digits = 8 ,decimal_places=2)
+    forma_pagamento = models.CharField(max_length=150)
+
+    def __str__(self):
+        return str(self.Id_Pedido)
+
+class Meta:
+    verbose_name = 'Id_Pedido',
+    verbose_name_plural = 'Id_Pedido',
+    ordering = ['Id_Pedido']
     
 
-class Personalização(models.Model):
-    Tipo = models.CharField(max_length=150)
-    Tamanho = models.CharField(max_length=150)
+class Produto(models.Model):
+    Nome = models.CharField(max_length=150)
+    Codigo = models.DecimalField('codigo', max_digits = 11 ,decimal_places=0)
+    Peso = models.DecimalField('peso', max_digits = 8 ,decimal_places=2)
+    Preco = models.DecimalField('preco', max_digits = 10 ,decimal_places=2)
     Marca = models.CharField(max_length=150)
+    Descricao = models.CharField(max_length=300)
 
     def __str__(self):
-        return self.Tipo
+        return self.Nome
 
 class Meta:
-    verbose_name = 'Personalização',
-    verbose_name_plural = 'Personalizações',
+    verbose_name = 'Componente',
+    verbose_name_plural = 'Componentes',
     ordering = ['nome']
 
-
-
-class loja_Automotiva(models.Model):
-    nome = models.CharField('Loja', max_length=150, unique=True)
-    endereco = models.CharField('Endereço', max_length=200)
-    telefone = models.CharField('Telefone', max_length=20)
-
-    categoria = models.ForeignKey(
-        Categoria,
-        on_delete=models.PROTECT,
-        related_name='loja_Automotiva',
-        verbose_name='Categoria',
-    )
-
-    fabricante = models.ForeignKey(
-        Fabricante,
-        on_delete=models.PROTECT,
-        related_name='loja_Automotiva',
-        verbose_name='Fabricante',
-    )
-
-    personalização = models.ForeignKey(
-        Personalização,
-        on_delete=models.PROTECT,
-        related_name='loja_Automotiva',
-        verbose_name='Personalização',
-    )
+class Usuario(models.Model):
+    Nome = models.CharField(max_length=150)
+    Email = models.CharField(max_length=200)
+    Telefone = models.DecimalField('telefone', max_digits=15, decimal_places=0)
+    Endereco = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nome
-
-    def get_absolute_url(self):
-        return reverse('loja_Automotiva', kwargs={'pk': self.pk})
+        return self.Nome
 
 class Meta:
-    verbose_name = 'loja_Automotiva',
-    verbose_name_plural = 'loja_Automotivas'
+    verbose_name = 'Usuario',
+    verbose_name_plural = 'Usuarios',
     ordering = ['nome']
+    
+class PJ(models.Model):
+    Razao_Social = models.CharField(max_length=200)
+    Inscricao_Estadual = models.DecimalField('inscricao estadual', max_digits=9, decimal_places=0)
+    Cnpj =  models.DecimalField('cnpj', max_digits=14, decimal_places=0)
+
+    usuario = models.ForeignKey(
+        Usuario,
+        on_delete=models.PROTECT,
+        related_name='PJ',
+        verbose_name='Usuario',
+    )
+
+class PF(models.Model):
+    Cpf =  models.DecimalField('cpf', max_digits=11, decimal_places=0)
+
+    usuario = models.ForeignKey(
+        Usuario,
+        on_delete=models.PROTECT,
+        related_name='PF',
+        verbose_name='Usuario',
+    )
