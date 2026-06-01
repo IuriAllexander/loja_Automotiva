@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as login_to
 
 def cadastro(request):
     if request.method == 'GET':
@@ -35,12 +35,7 @@ def login(request):
             password = senha)
         
         if usuario:
-            login(request, usuario)
+            login_to(request, usuario)
             return HttpResponse('autenticado')
         else:
             return HttpResponse('email ou senha invalidos')
-
-def carrinho(request):
-    if request.usuario.is_authenticated:
-        return HttpResponse('carrinho')
-    return HttpResponse('nao logado')
