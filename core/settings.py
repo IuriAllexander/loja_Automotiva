@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-do0u&l4b$m2r_ej^fh4cpl7gv8dx)sctek&s2so3wovu%wna0$
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://localhost:8000",
+]
 
 # Application definition
 
@@ -38,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'loja_Automotiva',
-    'usuarios'
+    'usuarios',
 ]
 
 MIDDLEWARE = [

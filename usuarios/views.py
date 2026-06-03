@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as login_to
+from django.contrib.auth import authenticate, login as login_django
 
 def cadastro(request):
     if request.method == 'GET':
@@ -11,10 +11,10 @@ def cadastro(request):
         email = request.POST.get('email')
         senha = request.POST.get('senha')
 
-        usuario = User.objects.filter(username=nome).first()
+        usuario = User.objects.filter(username=nome, email=email).first()
 
         if usuario:
-            return HttpResponse('já existe um usuario com esse nome')
+            return HttpResponse('já existe um usuario com esse nome ou email')
         
         usuario = User.objects.create_user(
             username = nome, 
@@ -27,15 +27,15 @@ def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
     else:
-        nome = request.POST.get('nome')
+        nome = request.POST.get('email')
         senha = request.POST.get('senha')
 
         usuario = authenticate(
-            username = nome, 
+            username = email, 
             password = senha)
         
         if usuario:
-            login_to(request, usuario)
+            login_django(request, usuario)
             return HttpResponse('autenticado')
         else:
             return HttpResponse('email ou senha invalidos')
