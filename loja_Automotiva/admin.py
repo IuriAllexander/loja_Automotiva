@@ -4,5 +4,6 @@ from .models import Categoria, Fabricante, Produto, Usuario, Pedido
  
 admin.site.register(Categoria)
 admin.site.register(Fabricante)
-admin.site.register(Personalização)
-admin.site.register(loja_Automotiva)
+admin.site.register(Produto)
+admin.site.register(Usuario)
+admin.site.register(Pedido)
