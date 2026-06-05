@@ -11,7 +11,7 @@ def cadastro(request):
         email = request.POST.get('email')
         senha = request.POST.get('senha')
 
-        usuario = User.objects.filter(username=nome, email=email).first()
+        usuario = User.objects.filter(username=nome, email= email).first()
 
         if usuario:
             return HttpResponse('já existe um usuario com esse nome ou email')
@@ -27,7 +27,7 @@ def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
     else:
-        nome = request.POST.get('email')
+        email = request.POST.get('email')
         senha = request.POST.get('senha')
 
         usuario = authenticate(
