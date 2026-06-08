@@ -31,17 +31,30 @@ class Meta:
     ordering = ['nome']
 
 class Pedido(models.Model):
-    Id_Pedido = models.DecimalField('id_pedido', max_digits = 11 ,decimal_places=0)
+    Id_Pedido = models.CharField('id_pedido', max_digits=11, unique=True,decimal_places=0)
     valor_total = models.DecimalField('valor_total', max_digits = 8 ,decimal_places=2)
     forma_pagamento = models.CharField(max_length=150)
 
+    usuario = models.ForeignKey(
+        Usuario,
+        related_name='pedidos',
+        verbose_name = 'Usuario',
+    )
+
+    produto = models.ManyToManyField(
+        Produto,
+        related_name='pedidos',
+        verbose_name='Componente',
+    )
+
     def __str__(self):
         return str(self.Id_Pedido)
+    
 
 class Meta:
     verbose_name = 'Id_Pedido',
-    verbose_name_plural = 'Id_Pedido',
-    ordering = ['Id_Pedido']
+    verbose_name_plural = 'Id_Pedidos',
+    ordering = ['id_Pedido']
     
 
 class Produto(models.Model):
@@ -49,8 +62,21 @@ class Produto(models.Model):
     Codigo = models.DecimalField('codigo', max_digits = 11 ,decimal_places=0)
     Peso = models.DecimalField('peso', max_digits = 8 ,decimal_places=2)
     Preco = models.DecimalField('preco', max_digits = 10 ,decimal_places=2)
-    Marca = models.CharField(max_length=150)
     Descricao = models.CharField(max_length=300)
+    Capa = models.ImageField('Capa', upload_to='capas/', blank=True, null=True)
+
+    fabricante = models.ForeignKey(
+        Fabricante,
+        on_delete=models.PROTECT,
+        related_name='produtos',
+        verbose_name='Fabricante',
+    )
+    categoria = models.ForeignKey(
+        Categoria,
+        on_delete=models.PROTECT,
+        related_name='produtos',
+        verbose_name='Categoria',
+    )
 
     def __str__(self):
         return self.Nome
@@ -75,7 +101,7 @@ class Meta:
     ordering = ['nome']
     
 class PJ(models.Model):
-    Razao_Social = models.CharField(max_length=200)
+    Razao_Social = models.CharField(max_length=200, )
     Inscricao_Estadual = models.DecimalField('inscricao estadual', max_digits=9, decimal_places=0)
     Cnpj =  models.DecimalField('cnpj', max_digits=14, decimal_places=0)
 
@@ -85,6 +111,8 @@ class PJ(models.Model):
         related_name='PJ',
         verbose_name='Usuario',
     )
+    def __str__(self):
+        return self.Cnpj
 
 class PF(models.Model):
     Cpf =  models.DecimalField('cpf', max_digits=11, decimal_places=0)
@@ -95,3 +123,5 @@ class PF(models.Model):
         related_name='PF',
         verbose_name='Usuario',
     )
+    def __str__(self):
+        return self.Cpf
