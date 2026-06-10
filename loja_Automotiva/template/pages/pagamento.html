@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento | Marquinhos Autopeças</title>
+<link rel="stylesheet" href="../../static/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+
+  <div class="logo">
+    Marquinhos<span>Autopeças</span>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html">Início</a>
+    <a href="categorias.html">Categorias</a>
+    <a href="#">Serviços</a>
+    <a href="#">Sobre</a>
+    <a href="#">Contato</a>
+  </nav>
+
+  <div class="actions">
+
+    <a href="carrinho.html">
+      <button class="cart-btn">
+        🛒
+        <span class="cart-count">3</span>
+      </button>
+    </a>
+
+    <a href="login.html">
+      <button>Login</button>
+    </a>
+
+    <a href="cadastro.html">
+      <button class="btn-primary">Cadastrar</button>
+    </a>
+
+  </div>
+
+</header>
+
+<section class="checkout-page">
+
+  <div class="checkout-form">
+
+    <div class="checkout-card">
+
+      <span class="tag">Entrega</span>
+      <h2>Dados de Entrega</h2>
+
+      <div class="checkout-grid">
+
+        <div class="input-group">
+          <label>Nome Completo</label>
+          <input type="text" placeholder="Digite seu nome">
+        </div>
+
+        <div class="input-group">
+          <label>CEP</label>
+          <input type="text" placeholder="00000-000">
+        </div>
+
+        <div class="input-group">
+          <label>Endereço</label>
+          <input type="text" placeholder="Rua, Avenida...">
+        </div>
+
+        <div class="input-group">
+          <label>Número</label>
+          <input type="text" placeholder="123">
+        </div>
+
+        <div class="input-group">
+          <label>Bairro</label>
+          <input type="text" placeholder="Seu bairro">
+        </div>
+
+        <div class="input-group">
+          <label>Cidade</label>
+          <input type="text" placeholder="Sua cidade">
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="checkout-card">
+
+      <span class="tag">Pagamento</span>
+      <h2>Forma de Pagamento</h2>
+
+      <div class="payment-methods">
+
+        <label class="payment-option">
+          <input type="radio" name="pagamento" checked>
+          Cartão de Crédito
+        </label>
+
+        <label class="payment-option">
+          <input type="radio" name="pagamento">
+          PIX
+        </label>
+
+        <label class="payment-option">
+          <input type="radio" name="pagamento">
+          Boleto Bancário
+        </label>
+
+      </div>
+
+      <div class="checkout-grid">
+
+        <div class="input-group">
+          <label>Número do Cartão</label>
+          <input type="text" placeholder="0000 0000 0000 0000">
+        </div>
+
+        <div class="input-group">
+          <label>Nome Impresso</label>
+          <input type="text" placeholder="Nome do titular">
+        </div>
+
+        <div class="input-group">
+          <label>Validade</label>
+          <input type="text" placeholder="MM/AA">
+        </div>
+
+        <div class="input-group">
+          <label>CVV</label>
+          <input type="text" placeholder="123">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <aside class="checkout-summary">
+
+    <h2>Resumo</h2>
+
+    <div class="summary-row">
+      <span>Produtos</span>
+      <span>R$ 759,70</span>
+    </div>
+
+    <div class="summary-row">
+      <span>Frete</span>
+      <span>R$ 25,00</span>
+    </div>
+
+    <div class="summary-row total">
+      <span>Total</span>
+      <span>R$ 784,70</span>
+    </div>
+
+    <button class="btn-secondary">
+      Confirmar Pedido
+    </button>
+
+  </aside>
+
+</section>
+
+<footer class="footer">
+  <p>© 2026 Marquinhos Autopeças</p>
+  <p>Desenvolvido para alta performance automotiva 🏁</p>
+</footer>
+
+</div>
+
+</body>
+</html>
