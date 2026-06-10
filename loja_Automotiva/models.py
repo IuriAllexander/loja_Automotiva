@@ -5,8 +5,8 @@ from django.urls import reverse
 
 # Model Categoria: representa categorias de produtos
 class Categoria(models.Model):
-    codigo_categoria = models.AutoField('categoria', primary_key=True)
-    nome_categoria = models.CharField('nome', max_length=150, unique=True, blank=False, null=False)
+    codigo_categoria = models.AutoField('categoria', primary_key=True, default=0)
+    nome_categoria = models.CharField('nome', max_length=50, unique=True, blank=False, null=True)
     descricao = models.TextField('descricao', blank=True, null=True)
 
     def __str__(self):
@@ -19,11 +19,11 @@ class Categoria(models.Model):
 
 # Model Fabricante: representa fabricantes de produtos
 class Fabricante(models.Model):
-    nome_fabricante = models.CharField('nome', max_length=150, unique=True, blank=False, null=False)
-    cnpj = models.CharField(max_length=14, unique=True, blank=False, null=False)
+    nome_fabricante = models.CharField('nome', max_length=150, unique=True, blank=False, null=True)
+    cnpj = models.CharField(max_length=14, unique=True, blank=False, null=True)
     endereco_fabricante = models.CharField(max_length=200, blank=True, null=True)
-    telefone_fabricante = models.CharField('telefone', max_length=11, blank=False, null=False)
-    email_fabricante = models.EmailField('email', max_length=200, unique=True, blank=False, null=False)
+    telefone_fabricante = models.CharField('telefone', max_length=11, blank=False, null=True)
+    email_fabricante = models.EmailField('email', max_length=200, unique=True, blank=False, null=True)
     website = models.URLField(blank=True)
     pais_origem = models.CharField(max_length=100, blank=True)
 
@@ -38,10 +38,10 @@ class Fabricante(models.Model):
 
 # Model Usuario: representa usuários do sistema
 class Usuario(models.Model):
-    nome_usuario = models.CharField('nome', max_length=150, unique=True, blank=False, null=False)
-    cpf = models.CharField('cpf', max_length=11, unique=True, blank=False, null=False)
-    email_usuario = models.EmailField('email', max_length=200, unique=True, blank=False, null=False)
-    telefone_usuario = models.CharField('telefone', max_length=11, blank=False, null=False)
+    nome_usuario = models.CharField('nome', max_length=150, unique=True, blank=False, null=False, default='Anonimo')
+    cpf = models.CharField('cpf', max_length=11, unique=True, blank=False, null=True)
+    email_usuario = models.EmailField('email', max_length=200, unique=True, blank=False, null=True)
+    telefone_usuario = models.CharField('telefone', max_length=11, blank=False, null=True)
     endereco_usuario = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
@@ -55,17 +55,18 @@ class Usuario(models.Model):
 
 # Model Produto: representa produtos
 class Produto(models.Model):
-    codigo_produto = models.CharField('codigo', primary_key=True, max_length=11)
+    codigo_produto = models.CharField('codigo', primary_key=True, max_length=11, default=0)
     nome_produto = models.CharField(max_length=150)
-    preco = models.DecimalField('preco', max_digits=10, decimal_places=2, blank=False, null=False)
+    preco = models.DecimalField('preco', max_digits=10, decimal_places=2, blank=False, null=False, default=0)
     estoque = models.PositiveIntegerField('estoque', blank=False, null=False, default=0)
-    peso = models.DecimalField('peso', max_digits=8, decimal_places=2, blank=False, null=False)
-    descricao = models.CharField('descricao', max_length=300, blank=False, null=False)
+    peso = models.DecimalField('peso', max_digits=8, decimal_places=2, blank=False, null=True)
+    descricao = models.CharField('descricao', max_length=300, blank=False, null=True)
     foto = models.ImageField('Capa', upload_to='capas/', blank=True, null=True)
 
     # Relacionamento com fabricante
     fabricante = models.ForeignKey(
         Fabricante,
+        default=0,
         on_delete=models.PROTECT,
         related_name='produtos',
         verbose_name='Fabricante',
@@ -74,6 +75,7 @@ class Produto(models.Model):
     # Relacionamento com categoria
     categoria = models.ForeignKey(
         Categoria,
+        default=0,
         on_delete=models.PROTECT,
         related_name='produtos',
         verbose_name='Categoria',
@@ -96,10 +98,10 @@ class FormaPagamento(models.TextChoices):
 
 # Model Pedido: representa pedidos realizados por usuários
 class Pedido(models.Model):
-    id_pedido = models.AutoField('id_pedido', primary_key=True)
+    id_pedido = models.AutoField('id_pedido', primary_key=True, default=0)
     valor_total = models.DecimalField('valor_total', max_digits=8, decimal_places=2)
     data_pedido = models.DateField(auto_now=True)
-    quantidade = models.PositiveIntegerField(blank=False)
+    quantidade = models.PositiveIntegerField(blank=False, default=1)
     
     # Forma de pagamento
     forma_pagamento = models.CharField(
@@ -112,6 +114,7 @@ class Pedido(models.Model):
     # Relacionamento com o usuário que fez o pedido
     usuario = models.ForeignKey(
         Usuario,
+        default=0,
         related_name='pedidos',
         on_delete=models.PROTECT,
         verbose_name='Usuario',
