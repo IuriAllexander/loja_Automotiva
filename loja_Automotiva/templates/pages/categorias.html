@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Categorias | Marquinhos Autopeças</title>
-<link rel="stylesheet" href="../../static/css/style.css">
+<link rel="stylesheet" href="../static/css/style.css">
 </head>
 
 <body>
@@ -64,7 +64,6 @@
 
     <div class="filter-group">
       <span>Categoria</span>
-
       <a href="#">Motor</a>
       <a href="#">Freios</a>
       <a href="#">Suspensão</a>
@@ -85,16 +84,33 @@
   </aside>
 
   <main class="catalog-products">
+    {% if produtos %}
+      {% for catalogo in produtos%}
 
-    <article class="card">
-      <div class="img"></div>
-      <span class="tag">Freios</span>
-      <h3>Kit Freio Esportivo</h3>
-      <p>Alta performance e segurança.</p>
-      <span>R$ 499,90</span>
-    </article>
+        <article class="card">
 
-    <article class="card">
+          <div class="img">
+            <!-- necessário formatar o img no css, pois a foto está estourada-->
+            <!-- {% if catalogo.foto.url %}
+            <img src="{{catalogo.foto.url}}" alt="{{catalogo.nome_produto}">
+            {%endif%} -->
+          </div>
+
+          <span class="tag">{{catalogo.categoria|title}}</span>
+
+          <h3>{{catalogo.nome_produto|title}}</h3>
+
+          <p>Alta performance e segurança.</p>
+
+          <span>R$ {{catalogo.preco|floatformat:2}}</span>
+        </article>
+      {%endfor%}
+    {%else%}
+        <h3>nenhum produto</h3>
+    {% endif %}
+      
+<!-- esses que estao comentados abaixo pode apagar -->
+    <!-- <article class="card">
       <div class="img"></div>
       <span class="tag">Motor</span>
       <h3>Filtro de Ar Esportivo</h3>
@@ -132,7 +148,7 @@
       <h3>Velas Iridium</h3>
       <p>Maior desempenho.</p>
       <span>R$ 159,90</span>
-    </article>
+    </article> -->
 
   </main>
 

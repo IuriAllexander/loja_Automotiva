@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,7 +21,7 @@
 
       <nav class="nav" aria-label="Menu principal">
         <a href="index.html">Início</a>
-        <a href="pages/categorias.html">Produtos</a>
+        <a href="{% url 'categoria' %}">Produtos</a>
         <a href="#">Serviços</a>
         <a href="#">Sobre</a>
         <a href="#">Contato</a>
@@ -81,12 +82,14 @@
         <div class="product-grid">
           
           {% if produtos %}
-            <article class="card">
             {% for produto in produtos %}
+            <article class="card">
+            
               <div class="img">
-                {% if produto.foto %}
-                <img src="{{ produtos.foto.url }}" alt="{{ produto.nome }}">
-                {% endif%}
+                <!-- necessário formatar o img no css, pois a foto está estourada -->
+                <!-- {% if produto.foto %}
+                <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}">
+                {% endif%} -->
               </div>
 
               <span class="tag">{{ produto.categoria|title }}</span>
@@ -96,11 +99,14 @@
               <p>Alta performance e segurança.</p>
 
               <span>R$ {{ produto.preco|floatformat:2 }}</span>
-          {% endfor %}
+          
             </article>
+            {% endfor %}
           {% else %}
             <h3>Não há novidades no momento</h3>
           {% endif %}
+
+          <!-- esses comentados abaixo pode apagar  -->
           <!-- <article class="card">
             <div class="img"></div>
             <span class="tag">Motor</span>
