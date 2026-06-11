@@ -5,7 +5,7 @@ from django.urls import reverse
 
 # Model Categoria: representa categorias de produtos
 class Categoria(models.Model):
-    codigo_categoria = models.AutoField('categoria', primary_key=True, default=0)
+    codigo_categoria = models.AutoField('categoria', primary_key=True)
     nome_categoria = models.CharField('nome', max_length=50, unique=True, blank=False, null=True)
     descricao = models.TextField('descricao', blank=True, null=True)
 
@@ -98,7 +98,7 @@ class FormaPagamento(models.TextChoices):
 
 # Model Pedido: representa pedidos realizados por usuários
 class Pedido(models.Model):
-    id_pedido = models.AutoField('id_pedido', primary_key=True, default=0)
+    id_pedido = models.AutoField('id_pedido', primary_key=True)
     valor_total = models.DecimalField('valor_total', max_digits=8, decimal_places=2)
     data_pedido = models.DateField(auto_now=True)
     quantidade = models.PositiveIntegerField(blank=False, default=1)
