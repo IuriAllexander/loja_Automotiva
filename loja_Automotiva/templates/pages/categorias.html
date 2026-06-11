@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Categorias | Marquinhos Autopeças</title>
+<link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+
+  <div class="logo">
+    Marquinhos<span>Autopeças</span>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html">Início</a>
+    <a href="categorias.html">Categorias</a>
+    <a href="#">Serviços</a>
+    <a href="#">Sobre</a>
+    <a href="#">Contato</a>
+  </nav>
+
+  <div class="actions">
+
+    <a href="carrinho.html">
+      <button class="cart-btn">
+        🛒
+        <span class="cart-count">3</span>
+      </button>
+    </a>
+
+    <a href="login.html">
+      <button>Login</button>
+    </a>
+
+    <a href="cadastro.html">
+      <button class="btn-primary">Cadastrar</button>
+    </a>
+
+  </div>
+
+</header>
+
+<section class="catalog-header">
+
+  <h1>Categorias de Produtos</h1>
+
+  <p>
+    Encontre as melhores peças automotivas para seu veículo.
+  </p>
+
+</section>
+
+<section class="catalog-container">
+
+  <aside class="filters">
+
+    <h3>Filtros</h3>
+
+    <div class="filter-group">
+      <span>Categoria</span>
+      <a href="#">Motor</a>
+      <a href="#">Freios</a>
+      <a href="#">Suspensão</a>
+      <a href="#">Lubrificantes</a>
+      <a href="#">Elétrica</a>
+    </div>
+
+    <div class="filter-group">
+      <span>Marcas</span>
+
+      <a href="#">Bosch</a>
+      <a href="#">Cofap</a>
+      <a href="#">Nakata</a>
+      <a href="#">Monroe</a>
+      <a href="#">Mahle</a>
+    </div>
+
+  </aside>
+
+  <main class="catalog-products">
+    {% if produtos %}
+      {% for catalogo in produtos%}
+
+        <article class="card">
+
+          <div class="img">
+            <!-- necessário formatar o img no css, pois a foto está estourada-->
+            <!-- {% if catalogo.foto.url %}
+            <img src="{{catalogo.foto.url}}" alt="{{catalogo.nome_produto}">
+            {%endif%} -->
+          </div>
+
+          <span class="tag">{{catalogo.categoria|title}}</span>
+
+          <h3>{{catalogo.nome_produto|title}}</h3>
+
+          <p>Alta performance e segurança.</p>
+
+          <span>R$ {{catalogo.preco|floatformat:2}}</span>
+        </article>
+      {%endfor%}
+    {%else%}
+        <h3>nenhum produto</h3>
+    {% endif %}
+      
+<!-- esses que estao comentados abaixo pode apagar -->
+    <!-- <article class="card">
+      <div class="img"></div>
+      <span class="tag">Motor</span>
+      <h3>Filtro de Ar Esportivo</h3>
+      <p>Maior fluxo de ar.</p>
+      <span>R$ 129,90</span>
+    </article>
+
+    <article class="card">
+      <div class="img"></div>
+      <span class="tag">Lubrificação</span>
+      <h3>Óleo Sintético Premium</h3>
+      <p>Proteção máxima.</p>
+      <span>R$ 89,90</span>
+    </article>
+
+    <article class="card">
+      <div class="img"></div>
+      <span class="tag">Suspensão</span>
+      <h3>Amortecedor Cofap</h3>
+      <p>Conforto e estabilidade.</p>
+      <span>R$ 349,90</span>
+    </article>
+
+    <article class="card">
+      <div class="img"></div>
+      <span class="tag">Elétrica</span>
+      <h3>Bateria Moura 60Ah</h3>
+      <p>Partidas mais eficientes.</p>
+      <span>R$ 549,90</span>
+    </article>
+
+    <article class="card">
+      <div class="img"></div>
+      <span class="tag">Motor</span>
+      <h3>Velas Iridium</h3>
+      <p>Maior desempenho.</p>
+      <span>R$ 159,90</span>
+    </article> -->
+
+  </main>
+
+</section>
+
+<footer class="footer">
+  <p>© 2026 Marquinhos Autopeças</p>
+  <p>Desenvolvido para alta performance automotiva 🏁</p>
+</footer>
+
+</div>
+
+</body>
+</html>

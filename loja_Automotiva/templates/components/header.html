@@ -1,0 +1,52 @@
+{% load static %}
+
+<header class="header">
+
+
+    <div class="logo">
+        <a href="{% url 'home' %}">
+            Marquinhos<span>Autopeças</span>
+        </a>
+    </div>
+
+    <nav class="nav">
+
+        <a href="{% url 'home' %}">Início</a>
+
+        <a href="{% url 'categorias' %}">
+            Categorias
+        </a>
+
+        <a href="{% url 'produtos' %}">
+            Produtos
+        </a>
+
+        <a href="{% url 'contato' %}">
+            Contato
+        </a>
+
+    </nav>
+
+    <div class="actions">
+
+        <a href="{% url 'carrinho' %}" class="icon-btn">
+            🛒
+        </a>
+
+        <a href="{% url 'perfil' %}" class="icon-btn">
+            👤
+        </a>
+
+        <a href="{% url 'login' %}">
+            <button>Login</button>
+        </a>
+
+        <a href="{% url 'cadastro' %}">
+            <button class="btn-primary">
+                Cadastro
+            </button>
+        </a>
+
+    </div>
+
+</header>

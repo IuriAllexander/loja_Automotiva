@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marquinhos Autopeças</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header" aria-label="Cabeçalho principal">
+
+      <div class="logo" aria-label="Logo do site">
+        Marquinhos<span>Autopeças</span>
+      </div>
+
+      <nav class="nav" aria-label="Menu principal">
+        <a href="index.html">Início</a>
+        <a href="{% url 'categoria' %}">Produtos</a>
+        <a href="#">Serviços</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+      </nav>
+
+      <div class="actions">
+
+        <a href="pages/carrinho.html">
+          <button class="cart-btn">
+            🛒
+            <span class="cart-count">3</span>
+          </button>
+        </a>
+
+        <a href="pages/perfil.html">
+          <button class="cart-btn">
+            👤
+          </button>
+        </a>
+
+        <a href="pages/login.html">
+          <button>Login</button>
+        </a>
+
+        <a href="pages/cadastro.html">
+          <button class="btn-primary">Cadastrar</button>
+        </a>
+
+      </div>
+
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Destaque principal">
+
+      <div class="hero-text">
+        <h1>
+          Peças automotivas de <span>alta performance</span>
+        </h1>
+
+        <p>
+          Encontre tudo para manutenção e upgrade do seu veículo em um só lugar.
+        </p>
+
+        <button class="btn-secondary" aria-label="Ver produtos disponíveis">
+          Ver Produtos
+        </button>
+      </div>
+
+    </section>
+
+    <!-- PRODUTOS -->
+    <section class="products" aria-label="Produtos em destaque">
+
+      <h2>Destaques</h2>
+
+      
+        <div class="product-grid">
+          
+          {% if produtos %}
+            {% for produto in produtos %}
+            <article class="card">
+            
+              <div class="img">
+                <!-- necessário formatar o img no css, pois a foto está estourada -->
+                <!-- {% if produto.foto %}
+                <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}">
+                {% endif%} -->
+              </div>
+
+              <span class="tag">{{ produto.categoria|title }}</span>
+
+              <h3>{{ produto.nome_produto|title }}</h3>
+
+              <p>Alta performance e segurança.</p>
+
+              <span>R$ {{ produto.preco|floatformat:2 }}</span>
+          
+            </article>
+            {% endfor %}
+          {% else %}
+            <h3>Não há novidades no momento</h3>
+          {% endif %}
+
+          <!-- esses comentados abaixo pode apagar  -->
+          <!-- <article class="card">
+            <div class="img"></div>
+            <span class="tag">Motor</span>
+            <h3>Filtro de Ar Esportivo</h3>
+            <p>Melhor fluxo de ar para motor.</p>
+            <span>R$ 129,90</span>
+          </article>
+
+          <article class="card">
+            <div class="img"></div>
+            <span class="tag">Lubrificação</span>
+            <h3>Óleo Sintético Premium</h3>
+            <p>Proteção máxima do motor.</p>
+            <span>R$ 89,90</span>
+          </article> -->
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" aria-label="Rodapé">
+
+      <p>© 2026 Marquinhos Autopeças</p>
+      <p>Desenvolvido para alta performance automotiva 🏁</p>
+
+    </footer>
+
+  </div>
+
+</body>
+</html>
