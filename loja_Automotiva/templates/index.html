@@ -77,33 +77,47 @@
 
       <h2>Destaques</h2>
 
-      <div class="product-grid">
+      
+        <div class="product-grid">
+          
+          {% if produtos %}
+            <article class="card">
+            {% for produto in produtos %}
+              <div class="img">
+                {% if produto.foto %}
+                <img src="{{ produtos.foto.url }}" alt="{{ produto.nome }}">
+                {% endif%}
+              </div>
 
-        <article class="card">
-          <div class="img"></div>
-          <span class="tag">Freios</span>
-          <h3>Kit Freio Esportivo</h3>
-          <p>Alta performance e segurança.</p>
-          <span>R$ 499,90</span>
-        </article>
+              <span class="tag">{{ produto.categoria|title }}</span>
 
-        <article class="card">
-          <div class="img"></div>
-          <span class="tag">Motor</span>
-          <h3>Filtro de Ar Esportivo</h3>
-          <p>Melhor fluxo de ar para motor.</p>
-          <span>R$ 129,90</span>
-        </article>
+              <h3>{{ produto.nome_produto|title }}</h3>
 
-        <article class="card">
-          <div class="img"></div>
-          <span class="tag">Lubrificação</span>
-          <h3>Óleo Sintético Premium</h3>
-          <p>Proteção máxima do motor.</p>
-          <span>R$ 89,90</span>
-        </article>
+              <p>Alta performance e segurança.</p>
 
-      </div>
+              <span>R$ {{ produto.preco|floatformat:2 }}</span>
+          {% endfor %}
+            </article>
+          {% else %}
+            <h3>Não há novidades no momento</h3>
+          {% endif %}
+          <!-- <article class="card">
+            <div class="img"></div>
+            <span class="tag">Motor</span>
+            <h3>Filtro de Ar Esportivo</h3>
+            <p>Melhor fluxo de ar para motor.</p>
+            <span>R$ 129,90</span>
+          </article>
+
+          <article class="card">
+            <div class="img"></div>
+            <span class="tag">Lubrificação</span>
+            <h3>Óleo Sintético Premium</h3>
+            <p>Proteção máxima do motor.</p>
+            <span>R$ 89,90</span>
+          </article> -->
+
+        </div>
 
     </section>
 
