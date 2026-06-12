@@ -82,3 +82,7 @@ def responder_chatbot(request):
             return JsonResponse({"erro": "Dados inválidos"}, status=400)
             
     return JsonResponse({"erro": "Método não permitido"}, status=405)
+def produtoBase(request):
+    produtos = Produto.objects.filter(estoque__gt=1).order_by('preco')[:3]
+    contexto = {'produtos': produtos}
+    return render(request, 'components/product_card.html', contexto)

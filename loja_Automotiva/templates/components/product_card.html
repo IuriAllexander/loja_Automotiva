@@ -1,37 +1,26 @@
-<article class="card">
+     <div class="product-grid">
+          {% if produtos %}
+            {% for produto in produtos %}
+            <article class="card">
+            
+              <div class="img">
+                <!-- necessário formatar o img no css, pois a foto está estourada -->
+                <!-- {% if produto.foto %}
+                <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}">
+                {% endif%} -->
+              </div>
 
-    <img>
+              <span class="tag">{{ produto.categoria|title }}</span>
 
-    <span class="tag">
-        Motor
-    </span>
+              <h3>{{ produto.nome_produto|title }}</h3>
 
-    <h3>
-        Filtro de Ar
-    </h3>
+              <p>Alta performance e segurança.</p>
 
-    <p>
-        Descrição
-    </p>
-
-    <span>
-        R$ 129,90
-    </span>
-
-</article>
-
-<div class="product-grid">
-
-    {% include 'components/product_card.html' %}
-    {% include 'components/product_card.html' %}
-    {% include 'components/product_card.html' %}
-
-</div>
-
-<div class="product-grid">
-
-    {% for produto in produtos %}
-        {% include 'components/product_card.html' %}
-    {% endfor %}
-
-</div>
+              <span>R$ {{ produto.preco|floatformat:2 }}</span>
+          
+            </article>
+            {% endfor %}
+          {% else %}
+            <h3>Não há novidades no momento</h3>
+          {% endif %}
+        </div>

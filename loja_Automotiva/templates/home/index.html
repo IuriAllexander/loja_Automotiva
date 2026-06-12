@@ -25,31 +25,9 @@ Marquinhos Autopeças
   
       </section>
 
-<section class="products">
-        <article class="card">
-          <img>
-          <span class="tag"> Motor</span>
-          <h3> Filtro de Ar</h3>
-          <p> Descrição</p>
-          <span> R$ 129,90</span>
-      </article>
-
-      <article class="card">
-        <img>
-        <span class="tag"> Motor</span>
-        <h3> Filtro de Ar</h3>
-        <p> Descrição</p>
-        <span> R$ 129,90</span>
-    </article>
-
-    <article class="card">
-      <img>
-      <span class="tag"> Motor</span>
-      <h3> Filtro de Ar</h3>
-      <p> Descrição</p>
-      <span> R$ 129,90</span>
-  </article>
-</section>
+<div class="product-grid">
+    {% include 'components/product_card.html' %}
+</div>
 
           <!--Chatbot -->
           <div id="chat-container" style="border: 1px solid #141418; max-width: 400px; margin: 20px auto; font-family: sans-serif; border-radius: 8px; overflow: hidden;">
@@ -122,6 +100,5 @@ Marquinhos Autopeças
             botaoEnviar.addEventListener('click', enviarMensagem);
             input.addEventListener('keypress', (e) => { if (e.key === 'Enter') enviarMensagem(); });
           </script>
-
-
+          
 {% endblock %}
