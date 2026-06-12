@@ -8,12 +8,14 @@
         </a>
     </div>
 
-    <nav class="nav">
 
         <a href="{% url 'home' %}">Início</a>
 
         <a href="{% url 'categorias' %}">
-            Categorias
+            <ul>Categorias</ul>
+                <il>Motor</il>
+                <il>Roda</il>
+                <il>Acelerador</i>
         </a>
 
         <a href="{% url 'produtos' %}">
@@ -29,11 +31,11 @@
     <div class="actions">
 
         <a href="{% url 'carrinho' %}" class="icon-btn">
-            🛒
+            Carrinho 🛒
         </a>
 
         <a href="{% url 'perfil' %}" class="icon-btn">
-            👤
+            Perfil 👤
         </a>
 
         <a href="{% url 'login' %}">
@@ -45,7 +47,6 @@
                 Cadastro
             </button>
         </a>
-
     </div>
 
 </header>
