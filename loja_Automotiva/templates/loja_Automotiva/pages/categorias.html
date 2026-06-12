@@ -1,0 +1,77 @@
+{% extends 'loja_Automotiva/base.html' %}
+
+{% block title%} Categorias | Marquinhos Autopeças {% endblock %}
+
+{% block content %}
+  <div class="container">
+
+  <section class="catalog-header">
+
+    <h1>Categorias de Produtos</h1>
+
+    <p>
+      Encontre as melhores peças automotivas para seu veículo.
+    </p>
+
+  </section>
+
+  <section class="catalog-container">
+
+    <aside class="filters">
+
+      <h3>Filtros</h3>
+
+      <div class="filter-group">
+        <span>Categoria</span>
+        <a href="#">Motor</a>
+        <a href="#">Freios</a>
+        <a href="#">Suspensão</a>
+        <a href="#">Lubrificantes</a>
+        <a href="#">Elétrica</a>
+      </div>
+
+      <div class="filter-group">
+        <span>Marcas</span>
+
+        <a href="#">Bosch</a>
+        <a href="#">Cofap</a>
+        <a href="#">Nakata</a>
+        <a href="#">Monroe</a>
+        <a href="#">Mahle</a>
+      </div>
+
+    </aside>
+
+    <main class="catalog-products">
+      {% if produtos %}
+        {% for catalogo in produtos%}
+
+          <article class="card">
+
+            <div class="img">
+              <!-- necessário formatar o img no css, pois a foto está estourada-->
+              <!-- {% if catalogo.foto.url %}
+              <img src="{{catalogo.foto.url}}" alt="{{catalogo.nome_produto}">
+              {%endif%} -->
+            </div>
+
+            <span class="tag">{{catalogo.categoria|title}}</span>
+
+            <h3>{{catalogo.nome_produto|title}}</h3>
+
+            <p>Alta performance e segurança.</p>
+
+            <span>R$ {{catalogo.preco|floatformat:2}}</span>
+          </article>
+        {%endfor%}
+      {%else%}
+          <h3>nenhum produto</h3>
+      {% endif %}
+      
+    </main>
+
+  </section>
+
+  </div>
+
+{% endblock %}

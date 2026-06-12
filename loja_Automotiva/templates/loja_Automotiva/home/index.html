@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'loja_Automotiva/base.html' %}
 
 {% block title %}
 Marquinhos Autopeças
@@ -26,10 +26,10 @@ Marquinhos Autopeças
       </section>
 
 <div class="product-grid">
-    {% include 'components/product_card.html' %}
+    {% include 'loja_Automotiva/components/product_card.html' %}
 </div>
 
-          <!--Chatbot -->
+          <!-- Chatbot -->
             <div id="chat-container" style="border: 1px solid #141418; max-width: 400px; margin: 20px auto; font-family: Arial, sans-serif; border-radius: 8px; overflow: hidden;">
               <div style="background: #e10600; color: white; padding: 10px; font-weight: bold;">Marquinhos Assistente</div>
               
@@ -99,6 +99,6 @@ Marquinhos Autopeças
 
             botaoEnviar.addEventListener('click', enviarMensagem);
             input.addEventListener('keypress', (e) => { if (e.key === 'Enter') enviarMensagem(); });
-          </script>
+          </script> 
           
 {% endblock %}
