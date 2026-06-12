@@ -3,9 +3,9 @@ from django.urls import reverse
 
 
 class Categoria(models.Model):
-    nome = models.CharField(max_length=150, unique=True)
+    nome = models.CharField(max_length=150, unique=True, null=True, blank=True)
     descricao = models.TextField(blank=True, null=True)
-    codigo = models.CharField(max_length=50, unique=True)
+    codigo = models.CharField(max_length=50, unique=True, null=True, blank=True)
 
     def __str__(self):
         return self.nome
@@ -15,10 +15,6 @@ class Categoria(models.Model):
         verbose_name_plural = 'Categorias'
         ordering = ['nome']
 
-    class Meta:
-        verbose_name = 'Categoria'
-        verbose_name_plural = 'Categorias'
-        ordering = ['nome_categoria']
 
 # Model Fabricante: representa fabricantes de produtos
 class Fabricante(models.Model):
@@ -64,21 +60,46 @@ class Usuario(models.Model):
         ordering = ['nome_usuario']
 
 
-# Model Produto: representa produtos
+# ==========================================
+# MODEL PRODUTO (REFEITO DO ZERO - LIMPO)
+# ==========================================
 class Produto(models.Model):
-    Nome = models.CharField(max_length=150)
-    Codigo = models.DecimalField('codigo', max_digits=11, decimal_places=0)
-    Peso = models.DecimalField('peso', max_digits=8, decimal_places=2)
-    Preco = models.DecimalField('preco', max_digits=10, decimal_places=2)
-    Descricao = models.CharField(max_length=300)
-    Capa = models.ImageField('Capa', upload_to='capas/', blank=True, null=True)
-    codigo_produto = models.CharField('codigo', primary_key=True, max_length=11, default=0)
-    nome_produto = models.CharField(max_length=150)
-    preco = models.DecimalField('preco', max_digits=10, decimal_places=2, blank=False, null=False, default=0)
-    estoque = models.PositiveIntegerField('estoque', blank=False, null=False, default=0)
-    peso = models.DecimalField('peso', max_digits=8, decimal_places=2, blank=False, null=True)
-    descricao = models.CharField('descricao', max_length=300, blank=False, null=True)
-    foto = models.ImageField('Capa', upload_to='capas/', blank=True, null=True)
+    # 1. Chave Primária (Identificador único do produto no banco)
+    codigo_produto = models.CharField('Código do Produto', primary_key=True, max_length=11, default='0')
+    
+    # 2. Campos de Informação do Produto
+    nome_produto = models.CharField('Nome do Produto', max_length=150)
+    preco = models.DecimalField('Preço', max_digits=10, decimal_places=2, default=0.00)
+    estoque = models.PositiveIntegerField('Estoque', default=0)
+    peso = models.DecimalField('Peso (kg)', max_digits=8, decimal_places=2, null=True, blank=True)
+    descricao = models.CharField('Descrição', max_length=300, null=True, blank=True)
+    foto = models.ImageField('Foto da Capa', upload_to='capas/', blank=True, null=True)
+
+    # 3. Relacionamento com Fabricante (Mantendo o que o resto do sistema espera)
+    fabricante = models.ForeignKey(
+        'Fabricante',
+        default=1,
+        on_delete=models.PROTECT,
+        related_name='produtos',
+        verbose_name='Fabricante',
+    )
+
+    # 4. Relacionamento com Categoria (Mantendo o que o resto do sistema espera)
+    categoria = models.ForeignKey(
+        'Categoria',
+        default=1,
+        on_delete=models.PROTECT,
+        related_name='produtos',
+        verbose_name='Categoria',
+    )
+
+    def __str__(self):
+        return self.nome_produto
+
+    class Meta:
+        verbose_name = 'Produto'
+        verbose_name_plural = 'Produtos'
+        ordering = ['nome_produto']
 
     # Relacionamento com fabricante
     fabricante = models.ForeignKey(
@@ -181,7 +202,7 @@ class PJ(models.Model):
     usuario = models.ForeignKey(
         Usuario,
         default=0,
-        related_name='pedidos',
+        related_name='perfil_pj',
         on_delete=models.PROTECT,
         verbose_name='Usuario',
     )

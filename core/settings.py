@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'meubanco.sqlite3',
     }
 }
 
@@ -118,6 +118,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL= '/media/'
+import os
+
+# URL que o navegador vai usar para acessar os arquivos
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+# Onde os arquivos de mídia (como as fotos dos produtos) vão ficar salvos
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Onde o Django vai buscar o seu arquivo CSS de 911 linhas
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
