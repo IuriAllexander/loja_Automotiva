@@ -18,4 +18,6 @@ urlpatterns = [
 
     path('carrinho/', views.carrinho_page, name='carrinho'),
     path('contato/', views.contato_page, name='contato'),
+
+    path('chatbot/api/', views.responder_chatbot, name='responder_chatbot'),
 ]

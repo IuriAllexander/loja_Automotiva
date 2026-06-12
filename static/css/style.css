@@ -289,6 +289,9 @@ body::before {
 
 .products {
   padding: 70px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 22px;
 }
 
 .products h2 {
@@ -907,4 +910,14 @@ body::before {
     text-align:center;
   }
 
+}
+
+.logo a {
+  text-decoration: none; 
+  color: inherit;        
+}
+
+.actions a {
+  text-decoration: none; 
+  color: inherit;        
 }

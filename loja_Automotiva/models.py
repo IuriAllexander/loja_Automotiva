@@ -143,7 +143,6 @@ class FormaPagamento(models.TextChoices):
         verbose_name_plural = 'Usuarios'
         ordering = ['Nome']
 
-
 class Pedido(models.Model):
     Id_Pedido = models.CharField(
         'id_pedido',

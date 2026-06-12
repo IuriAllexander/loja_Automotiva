@@ -4,6 +4,11 @@ from django.http import HttpResponse
 from .models import Produto
 
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+
 def home(request):
     produtos = Produto.objects.filter(estoque__gt=1).order_by('preco')[:3]
     contexto = {'produtos': produtos}
@@ -52,3 +57,28 @@ def paginaCategoria(request):
 
 def paginaProduto(request):
     pass
+
+
+
+
+#Chatbot
+@csrf_exempt
+def responder_chatbot(request):
+    if request.method == "POST":
+        try:
+            dados = json.loads(request.body)
+            mensagem_usuario = dados.get("mensagem", "").lower().strip()
+
+            if "olá" in mensagem_usuario or "oi" in mensagem_usuario:
+                resposta_bot = "Olá! Como posso te ajudar hoje?"
+            elif "ajuda" in mensagem_usuario:
+                resposta_bot = "Você pode me perguntar sobre nossos serviços ou horários."
+            else:
+                resposta_bot = "Desculpe, ainda estou aprendendo e não entendi sua mensagem."
+
+            return JsonResponse({"resposta": resposta_bot})
+            
+        except json.JSONDecodeError:
+            return JsonResponse({"erro": "Dados inválidos"}, status=400)
+            
+    return JsonResponse({"erro": "Método não permitido"}, status=405)
