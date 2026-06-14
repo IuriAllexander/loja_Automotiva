@@ -79,7 +79,6 @@ def produto_page(request):
 
 def carrinho_page(request):
     """Renderiza a página do carrinho de compras."""
-    
     return render(request, 'loja_Automotiva/pages/carrinho.html')
 
 
@@ -122,3 +121,9 @@ def login_teste_page(request):
 
 def cadastro_teste_page(request):
     return render(request, 'loja_Automotiva/pages/cadastro_teste.html')
+
+def servicos_page(request):
+    return render(request, 'loja_Automotiva/pages/servicos.html')
+
+def pagamento_teste_page(request):
+    return render(request, 'loja_Automotiva/pages/pagamento_teste.html')

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'loja_Automotiva/base.html' %}
 
 {% block title %}
 Carrinho
@@ -6,40 +6,6 @@ Carrinho
 
 {% block content %}
 
-<header class="header">
-
-  <div class="logo">
-    Marquinhos<span>Autopeças</span>
-  </div>
-
-  <nav class="nav">
-    <a href="index.html">Início</a>
-    <a href="categorias.html">Categorias</a>
-    <a href="#">Serviços</a>
-    <a href="#">Sobre</a>
-    <a href="#">Contato</a>
-  </nav>
-
-  <div class="actions">
-
-    <a href="carrinho.html">
-      <button class="cart-btn">
-        🛒
-        <span class="cart-count">3</span>
-      </button>
-    </a>
-
-    <a href="login.html">
-      <button>Login</button>
-    </a>
-
-    <a href="cadastro.html">
-      <button class="btn-primary">Cadastrar</button>
-    </a>
-
-  </div>
-
-</header>
 
 <section class="cart-page">
 
@@ -112,7 +78,7 @@ Carrinho
       <span>R$ 784,70</span>
     </div>
 
-    <a href="pagamento.html">
+    <a href="{% url 'pagamento_teste' %}">
       <button class="btn-secondary">
         Finalizar Compra
       </button>
