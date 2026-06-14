@@ -23,6 +23,12 @@ def categorias_page(request):
     contexto = {'produtos': produtos}
     return render(request, "loja_Automotiva/pages/categorias.html", contexto)
 
+def login_page(request):
+    return render(request, 'loja_Automotiva/pages/login.html')
+
+
+def cadastro_page(request):
+    return render(request, 'loja_Automotiva/pages/cadastro.html')
 
 
 
@@ -40,13 +46,6 @@ def produto_base(request):
 def adicionar_produto(request):
     if request == 'GET':
         return render(request, 'loja_Automotiva/pages/adicionar.html')
-
-
-
-
-
-
-
 
 
 
@@ -116,3 +115,10 @@ def responder_chatbot(request):
             return JsonResponse({"erro": "Dados inválidos"}, status=400)
 
     return JsonResponse({"erro": "Método não permitido"}, status=405)
+
+
+def login_teste_page(request):
+    return render(request, 'loja_Automotiva/pages/login_teste.html')
+
+def cadastro_teste_page(request):
+    return render(request, 'loja_Automotiva/pages/cadastro_teste.html')

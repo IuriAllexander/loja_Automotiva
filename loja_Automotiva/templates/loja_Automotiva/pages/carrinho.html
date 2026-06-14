@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carrinho | Marquinhos Autopeças</title>
-<link rel="stylesheet" href="../../static/css/style.css">
-</head>
+{% extends 'base.html' %}
 
-<body>
+{% block title %}
+Carrinho
+{% endblock %}
 
-<div class="container">
+{% block content %}
 
 <header class="header">
 
@@ -127,12 +122,4 @@
 
 </section>
 
-<footer class="footer">
-  <p>© 2026 Marquinhos Autopeças</p>
-  <p>Desenvolvido para alta performance automotiva 🏁</p>
-</footer>
-
-</div>
-
-</body>
-</html>
+{% endblock %}

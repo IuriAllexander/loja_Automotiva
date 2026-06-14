@@ -8,41 +8,41 @@
         </a>
     </div>
 
+    <a href="{% url 'home' %}">Início</a>
 
-        <a href="{% url 'home' %}">Início</a>
+    <div class="dropdown">
+    <a href="{% url 'categorias' %}">
+        Categorias <span class="arrow">▼</span>
+    </a>
 
-        <a href="{% url 'categorias' %}">
-            <ul>Categorias</ul>
-                <il>Motor</il>
-                <il>Roda</il>
-                <il>Acelerador</i>
-        </a>
+    <ul class="submenu">
+        <li>Motor</li>
+        <li>Roda</li>
+        <li>Acelerador</li>
+    </ul>
+</div>
 
+    <a href="{% url 'produto' %}">
+        Produtos
+    </a>
         <a href="{% url 'produto' %}">
-            Produtos
-        </a>
-
-        <a href="{% url 'contato' %}">
-            Contato
-        </a>
-
-    </nav>
+        Serviços
+    </a>
 
     <div class="actions">
-
         <a href="{% url 'carrinho' %}" class="icon-btn">
-            Carrinho 🛒
+        🛒
         </a>
 
         <a href="{% url 'perfil' %}" class="icon-btn">
-            Perfil 👤
+        👤
         </a>
 
-        <a href="{% url 'login' %}">
+        <a href="{% url 'login_teste' %}">
             <button>Login</button>
         </a>
 
-        <a href="{% url 'cadastro' %}">
+        <a href="{% url 'cadastro_teste' %}">
             <button class="btn-primary">
                 Cadastro
             </button>

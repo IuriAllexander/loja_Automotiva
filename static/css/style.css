@@ -82,15 +82,17 @@ body::before {
 }
 
 .logo {
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 2px;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 1px;
   text-transform: uppercase;
+  
 }
 
 .logo span {
   color: #e10600;
   text-shadow: 0 0 10px rgba(225, 6, 0, 0.5);
+  margin-left: 4px;
 }
 
 .nav {
@@ -124,6 +126,12 @@ body::before {
 
 .nav a:hover::after {
   width: 100%;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .actions button {
@@ -166,6 +174,28 @@ body::before {
   box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
 }
 
+.icon-btn {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #1a1a1f;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+
+    font-size: 20px;
+
+    transition: .25s;
+}
+
+.icon-btn:hover {
+    border-color: #ffcc00;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255,204,0,.15);
+}
 
 /* ==========================================================================
    4. BOTÕES E COMPONENTES GLOBAIS
@@ -927,4 +957,68 @@ body::before {
 .actions a {
   text-decoration: none; 
   color: inherit;        
+}
+
+
+
+.dropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.arrow {
+    font-size: 10px;
+    margin-left: 6px;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .arrow {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+
+    min-width: 180px;
+    list-style: none;
+
+    background: #141418;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+
+    padding: 8px 0;
+    margin: 0;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.4);
+    z-index: 1000;
+
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.dropdown:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.submenu li {
+    padding: 12px 16px;
+    color: #bdbdbd;
+    transition: all 0.25s ease;
+    cursor: default;
+}
+
+.submenu li:hover {
+    background: #1a1a1f;
+    color: #ffcc00;
+    padding-left: 22px;
 }
