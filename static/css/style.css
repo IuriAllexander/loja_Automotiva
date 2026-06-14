@@ -25,12 +25,6 @@
    1. RESET E BASE
 ========================================================================== */
 
-html,
-body{
-    max-width:100%;
-    overflow-x:hidden;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -88,17 +82,15 @@ body::before {
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  
 }
 
 .logo span {
   color: #e10600;
   text-shadow: 0 0 10px rgba(225, 6, 0, 0.5);
-  margin-left: 4px;
 }
 
 .nav {
@@ -132,12 +124,6 @@ body::before {
 
 .nav a:hover::after {
   width: 100%;
-}
-
-.actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
 }
 
 .actions button {
@@ -180,28 +166,6 @@ body::before {
   box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
 }
 
-.icon-btn {
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #1a1a1f;
-    border: 1px solid #2a2a2a;
-    border-radius: 8px;
-
-    font-size: 20px;
-
-    transition: .25s;
-}
-
-.icon-btn:hover {
-    border-color: #ffcc00;
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(255,204,0,.15);
-}
 
 /* ==========================================================================
    4. BOTÕES E COMPONENTES GLOBAIS
@@ -869,58 +833,15 @@ body::before {
    12. FOOTER
 ========================================================================== */
 
-.footer {
-    background: #141418;
-    border-top: 2px solid #e10600;
-    margin-top: 60px;
-    color: #bdbdbd;
+.footer{
+  text-align:center;
+  padding:25px;
+  background:#141418;
+  margin-top:50px;
+  border-top:2px solid #e10600;
+  color:#888;
 }
 
-.footer-grid {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 50px 70px;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 40px;
-}
-
-.footer-section h3,
-.footer-section h4 {
-    color: #fff;
-    margin-bottom: 15px;
-}
-
-.footer-section h3 span {
-    color: #e10600;
-}
-
-.footer-section p {
-    line-height: 1.7;
-    color: #999;
-}
-
-.footer-section a {
-    display: block;
-    text-decoration: none;
-    color: #999;
-    margin-bottom: 10px;
-    transition: 0.3s;
-}
-
-.footer-section a:hover {
-    color: #ffcc00;
-    transform: translateX(4px);
-}
-
-.footer-copy {
-    text-align: center;
-    padding: 20px;
-    border-top: 1px solid #222;
-    color: #777;
-    font-size: 14px;
-}
 
 /* ==========================================================================
    13. ANIMAÇÕES
@@ -1006,220 +927,4 @@ body::before {
 .actions a {
   text-decoration: none; 
   color: inherit;        
-}
-
-
-
-.dropdown {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-}
-
-.arrow {
-    font-size: 10px;
-    margin-left: 6px;
-    transition: transform 0.3s ease;
-}
-
-.dropdown:hover .arrow {
-    transform: rotate(180deg);
-}
-
-.submenu {
-    position: absolute;
-    top: calc(100% + 12px);
-    left: 50%;
-    transform: translateX(-50%) translateY(-10px);
-
-    min-width: 180px;
-    list-style: none;
-
-    background: #141418;
-    border: 1px solid #2a2a2a;
-    border-radius: 8px;
-
-    padding: 8px 0;
-    margin: 0;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,.4);
-    z-index: 1000;
-
-    opacity: 0;
-    visibility: hidden;
-    transition:
-        opacity 0.25s ease,
-        transform 0.25s ease,
-        visibility 0.25s ease;
-}
-
-.dropdown:hover .submenu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
-
-.submenu li {
-    padding: 12px 16px;
-    color: #bdbdbd;
-    transition: all 0.25s ease;
-    cursor: default;
-}
-
-.submenu li:hover {
-    background: #1a1a1f;
-    color: #ffcc00;
-    padding-left: 22px;
-}
-
-
-
-
-/* ==========================================================================
-   CHATBOT
-========================================================================== */
-
-.chat-toggle{
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    width: 65px;
-    height: 65px;
-    border: none;
-    border-radius: 50%;
-    font-size: 28px;
-    cursor: pointer;
-    background: linear-gradient(135deg,#e10600,#8b0000);
-    color: white;
-    box-shadow: 0 0 20px rgba(225,6,0,.45);
-    z-index: 9999;
-    transition: .3s;
-}
-
-.chat-toggle:hover{
-    transform: scale(1.08);
-}
-
-.chat-container{
-    position: fixed;
-    right: 25px;
-    bottom: 100px;
-    width: 360px;
-    height: 500px;
-
-    background: #141418;
-
-    border: 1px solid #2a2a2a;
-    border-radius: 16px;
-
-    overflow: hidden;
-
-    display: flex;
-    flex-direction: column;
-
-    box-shadow: 0 15px 40px rgba(0,0,0,.4);
-
-    z-index: 9998;
-
-    transition: .3s ease;
-}
-
-.chat-container.fechado{
-    opacity: 0;
-    visibility: hidden;
-
-    transform: translateY(20px) scale(.9);
-}
-
-.chat-header{
-    background: linear-gradient(135deg,#e10600,#8b0000);
-
-    padding: 15px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    font-weight: bold;
-}
-
-.chat-header button{
-    background: transparent;
-    border: none;
-
-    color: white;
-
-    cursor: pointer;
-
-    font-size: 18px;
-}
-
-.chat-historico{
-    flex: 1;
-
-    padding: 15px;
-
-    overflow-y: auto;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    background: #0f0f12;
-}
-
-.mensagem{
-    padding: 10px 14px;
-    border-radius: 12px;
-    max-width: 80%;
-    line-height: 1.4;
-}
-
-.mensagem.bot{
-    align-self: flex-start;
-
-    background: #1f1f24;
-    color: #fff;
-}
-
-.mensagem.usuario{
-    align-self: flex-end;
-
-    background: #ffcc00;
-    color: #000;
-}
-
-.chat-input-area{
-    display: flex;
-
-    border-top: 1px solid #222;
-}
-
-.chat-input-area input{
-    flex: 1;
-
-    padding: 14px;
-
-    border: none;
-    outline: none;
-
-    background: #1a1a1f;
-    color: white;
-}
-
-.chat-input-area button{
-    width: 60px;
-
-    border: none;
-
-    background: #ffcc00;
-    color: black;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.chat-input-area button:hover{
-    filter: brightness(1.05);
 }
