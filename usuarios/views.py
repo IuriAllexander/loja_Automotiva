@@ -1,41 +1,18 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as login_django
+from django.contrib import messages
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import redirect, render
+
 
 def cadastro(request):
-    if request.method == 'GET':
-        return render(request, 'cadastro.html')
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user) 
+            messages.success(request, f'Bem-vindo(a), {user.username}!')
+            return redirect('home')
     else:
-        nome = request.POST.get('nome')
-        email = request.POST.get('email')
-        senha = request.POST.get('senha')
+        form = UserCreationForm()
 
-        usuario = User.objects.filter(username=nome, email= email).first()
-
-        if usuario:
-            return HttpResponse('já existe um usuario com esse nome ou email')
-        
-        usuario = User.objects.create_user(
-            username = nome, 
-            email= email, 
-            password =senha)
-        usuario.save()
-        return HttpResponse('usuario cadastrado com sucesso')
-
-def login(request):
-    if request.method == 'GET':
-        return render(request, 'login.html')
-    else:
-        email = request.POST.get('email')
-        senha = request.POST.get('senha')
-
-        usuario = authenticate(
-            username = email, 
-            password = senha)
-        
-        if usuario:
-            login_django(request, usuario)
-            return HttpResponse('autenticado')
-        else:
-            return HttpResponse('email ou senha invalidos')
+    return render(request, 'registration/cadastro.html', {'form': form})

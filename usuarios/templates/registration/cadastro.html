@@ -1,0 +1,55 @@
+{% extends 'loja_Automotiva/base.html'%}
+{% block title %}
+Cadastro | Marquinhos Autopeças
+{% endblock %}
+
+{% block content %}
+
+    <section class="auth-page">
+
+        <div class="auth-card">
+
+            <span class="tag">Novo Cliente</span>
+            
+            <h1>Crie sua Conta</h1>
+
+            <p>
+                Cadastre-se para acompanhar pedidos, salvar produtos favoritos e aproveitar ofertas exclusivas.
+            </p>
+
+            <form class="auth-form" method="post">
+
+                {% csrf_token %}
+
+                    {% for field in form %}
+                        <div class="input-group">
+                        <label for="{{ field.id_for_label }}" class="form-label">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                            {% if field.errors %}
+                                <div class="text-danger small">
+                                    {% for erro in field.errors %}{{ erro }}<br>{% endfor %}
+                                </div>
+                            {% endif %}
+
+                    {% endfor %}
+                    
+                <button type="submit" class="btn-secondary">
+                    Criar Conta
+                </button>
+
+            </form>
+
+            <div class="auth-footer">
+                Já possui uma conta?
+                <a href="{% url 'login' %}">
+                    Entrar
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}

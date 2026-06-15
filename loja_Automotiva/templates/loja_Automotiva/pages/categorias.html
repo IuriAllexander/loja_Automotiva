@@ -23,14 +23,12 @@
 
       <div class="filter-group">
         <span>Categoria</span>
-        <a href="#">Motor</a>
-        <a href="#">Freios</a>
-        <a href="#">Suspensão</a>
-        <a href="#">Lubrificantes</a>
-        <a href="#">Elétrica</a>
+        {% for categoria in categorias%}
+          <a href="{% url 'categoria-especifica' categoria.pk %}">{{categoria.nome_categoria|title}}</a>
+        {%endfor%}
       </div>
 
-      <div class="filter-group">
+      <!-- <div class="filter-group">
         <span>Marcas</span>
 
         <a href="#">Bosch</a>
@@ -38,30 +36,36 @@
         <a href="#">Nakata</a>
         <a href="#">Monroe</a>
         <a href="#">Mahle</a>
-      </div>
+      </div> -->
 
     </aside>
 
     <main class="catalog-products">
       {% if produtos %}
-        {% for catalogo in produtos%}
+        {% for produto in produtos%}
 
           <article class="card">
 
             <div class="img">
               <!-- necessário formatar o img no css, pois a foto está estourada-->
-              <!-- {% if catalogo.foto.url %}
-              <img src="{{catalogo.foto.url}}" alt="{{catalogo.nome_produto}">
-              {%endif%} -->
+              {% if produto.foto %}
+                <a href="{%url 'produto-detalhe' produto.pk %}">
+                  <img src="{{produto.foto.url}}" alt="{{produto.nome_produto}">
+                </a>
+              {%endif%}
             </div>
 
-            <span class="tag">{{catalogo.categoria|title}}</span>
+            <span class="tag">{{produto.categoria|title}}</span>
 
-            <h3>{{catalogo.nome_produto|title}}</h3>
+            <h3>
+              <a href="{%url 'produto-detalhe' produto.pk %}">
+                {{produto.nome_produto|title}}
+              </a>
+            </h3>
 
-            <p>Alta performance e segurança.</p>
+            <p><a href="{%url 'produto-detalhe' produto.pk %}">Alta performance e segurança</a></p>
 
-            <span>R$ {{catalogo.preco|floatformat:2}}</span>
+            <span><a href="{%url 'produto-detalhe' produto.pk%}">R$ {{produto.preco|floatformat:2}}</a></span>
           </article>
         {%endfor%}
       {%else%}

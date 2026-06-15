@@ -1,0 +1,48 @@
+{% extends 'loja_Automotiva/base.html' %}
+
+{% block title %} {{ titulo }} Marquinhos Autopeças 
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-page">
+    <div class="auth-card">
+        <form class="auth-form" method="post">
+            {% csrf_token %}
+
+
+            <span class="tag">Novo </span>
+
+            <h1> {{titulo}} </h1>
+
+            {% for field in form %}
+                    <div class="input-group">
+                        <label for="{{ field.id_for_label }}" class="form-label">
+                            {{ field.label }}
+                            {% if field.field.required %}<span class="">*</span>{% endif %}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.errors %}
+                            <div class="">
+                                {% for erro in field.errors %}{{ erro }}<br>{% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+            {% endfor %}
+
+            <button type="submit" class="btn-secondary">
+                Adicionar
+            </button>
+
+            <div class="auth-footer">
+                <a  href="{% url 'categorias' %}">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

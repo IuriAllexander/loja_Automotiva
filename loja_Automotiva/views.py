@@ -1,13 +1,16 @@
 import json 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render
-#from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
 # from django.http import HttpResponse
-from .models import Produto
+from .models import Produto, Categoria
+from .forms import ProdutoForm, CategoriaForm, FabricanteForm, UsuarioForm
 
 
-
+def is_staff(user):
+    return user.is_authenticated and user.is_staff
 
 
 def home_page(request):
@@ -23,16 +26,124 @@ def categorias_page(request):
     contexto = {'produtos': produtos}
     return render(request, "loja_Automotiva/pages/categorias.html", contexto)
 
-def login_page(request):
-    return render(request, 'loja_Automotiva/pages/login.html')
+def categoria_especifica(request, pk):
+    categorias = get_object_or_404(Categoria, pk=pk)
+    produtos = Produto.objects.filter(categoria=categorias)
+    contexto = {'produtos': produtos, 'categoria':categorias}
+    return render(request, "loja_Automotiva/pages/categorias.html", contexto)
 
+@user_passes_test(is_staff)
+def criar_produto(request):
+    if request.method == 'POST':
+        form = ProdutoForm(request.POST, request.FILES)
+        if form.is_valid():
+            produto = form.save()
+            messages.success(request, f' Novo produto {produto.nome_produto} cadastrado com sucesso!')
+            return redirect('categorias')
+        else:
+            messages.error(request, 'Corrija os erros abaixo.')
+    else:
+        form = ProdutoForm()
 
-def cadastro_page(request):
-    return render(request, 'loja_Automotiva/pages/cadastro.html')
+    return render(request, 'loja_Automotiva/pages/cadastro_elementos.html', {
+        'form': form,
+        'titulo': 'Cadastro de produtos',
+    })
 
+@user_passes_test(is_staff)
+def criar_categoria(request):
+    if request.method == 'POST':
+        form = CategoriaForm(request.POST)
+        if form.is_valid():
+            categoria = form.save()
+            messages.success(request, f' Nova categoria {categoria.nome_categoria} cadastrada com sucesso!')
+            return redirect('categorias')
+        else:
+            messages.error(request, 'Corrija os erros abaixo.')
+    else:
+        form = CategoriaForm()
 
+    return render(request, 'loja_Automotiva/pages/cadastro_elementos.html', {
+        'form': form,
+        'titulo': 'Cadastro de categoria',
+    })
 
+@user_passes_test(is_staff)
+def criar_fabricante(request):
+    if request.method == 'POST':
+        form = ProdutoForm(request.POST)
+        if form.is_valid():
+            fabricante = form.save()
+            messages.success(request, f' Novo fabricante {fabricante.nome_fabricante} cadastrado com sucesso!')
+            return redirect('categorias')
+        else:
+            messages.error(request, 'Corrija os erros abaixo.')
+    else:
+        form = FabricanteForm()
 
+    return render(request, 'loja_Automotiva/pages/cadastro_elementos.html', {
+        'form': form,
+        'titulo': 'Cadastro de Fabricante',
+    })
+
+@user_passes_test(is_staff)
+def criar_usuario(request):
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST, request.FILES)
+        if form.is_valid():
+            produto = form.save()
+            messages.success(request, f' {usuario.nome_usuario} cadastrado com sucesso!')
+            return redirect('categorias')
+        else:
+            messages.error(request, 'Corrija os erros abaixo.')
+    else:
+        form = ProdutoForm()
+
+    return render(request, 'loja_Automotiva/pages/cadastro_elementos.html', {
+        'form': form,
+        'titulo': 'Usuario',
+    })
+
+@user_passes_test(is_staff)
+def editar_produto(request, pk):
+    produto = get_object_or_404(Produto, pk=pk)
+
+    if request.method == 'POST':
+        form = ProdutoForm(request.POST, request.FILES, instance=produto)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Produto "{produto.nome_produto}" atualizado com sucesso!')
+            return redirect('produto-detalhe', pk=produto.pk)
+        else:
+            messages.error(request, 'Corrija os erros abaixo.')
+    else:
+        form = ProdutoForm(instance=produto)
+
+    return render(request, 'loja_Automotiva/pages/cadastro_elementos.html', {
+        'form': form,
+        'titulo': f'Editar: {produto.nome_produto}',
+        'editando': True,
+    })
+
+@user_passes_test(is_staff)
+def excluir_produto(request, pk):
+    produto = get_object_or_404(Produto, pk=pk)
+
+    if request.method == 'POST':
+        nome = produto.nome_produto
+        produto.delete()
+        messages.success(request, f'Produto "{nome}" foi removido.')
+        return redirect('categorias')
+
+    return render(request, 'loja_Automotiva/pages/excluir.html', {
+        'produto': produto,
+    })
+
+def produto_page(request, pk):
+    """Renderiza a página de produtos."""
+    produto =  get_object_or_404(Produto, pk=pk)
+    contexto = {'produto': produto}    
+    return render(request, 'loja_Automotiva/pages/produto.html', contexto)
 
 def produto_base(request):
     """Renderiza o componente de cards de produtos."""
@@ -40,56 +151,30 @@ def produto_base(request):
     contexto = {'produtos': produtos}
     return render(request, 'loja_Automotiva/components/product_card.html', contexto)
 
-
-
-
-def adicionar_produto(request):
-    if request == 'GET':
-        return render(request, 'loja_Automotiva/pages/adicionar.html')
-
-
-
-def login_page(request):
-    """Renderiza a página de login."""
-    return render(request, 'loja_Automotiva/pages/login.html')
-
-
-def cadastro_page(request):
-    """Renderiza a página de cadastro."""
-    return render(request, 'loja_Automotiva/pages/cadastro.html')
-
-
+@login_required
 def perfil_page(request):
     """Renderiza a página de perfil do usuário."""
-    
     return render(request, 'loja_Automotiva/pages/perfil.html')
 
-
-def pagina_produto(request):
-    """Renderiza a página de detalhes do produto."""
-    
-    pass
-
-
-def produto_page(request):
-    """Renderiza a página de produtos."""
-    
-    return render(request, 'loja_Automotiva/pages/produto.html')
-
-
+@login_required
 def carrinho_page(request):
     """Renderiza a página do carrinho de compras."""
     return render(request, 'loja_Automotiva/pages/carrinho.html')
 
-
 def contato_page(request):
     """Renderiza a página de contato."""
     
+@login_required
+def pagamento_teste_page(request):
+    return render(request, 'loja_Automotiva/pages/pagamento_teste.html')
     return render(request, 'loja_Automotiva/pages/contato.html')
 
+@login_required
+def cadastro_elementos_page(request):
+    return render(request, 'loja_Automotiva/pages/cadastro_elementos.html')
 
-
-
+def servicos_page(request):
+    return render(request, 'loja_Automotiva/pages/servicos.html')
 
 #Chatbot
 @csrf_exempt
@@ -114,16 +199,3 @@ def responder_chatbot(request):
             return JsonResponse({"erro": "Dados inválidos"}, status=400)
 
     return JsonResponse({"erro": "Método não permitido"}, status=405)
-
-
-def login_teste_page(request):
-    return render(request, 'loja_Automotiva/pages/login_teste.html')
-
-def cadastro_teste_page(request):
-    return render(request, 'loja_Automotiva/pages/cadastro_teste.html')
-
-def servicos_page(request):
-    return render(request, 'loja_Automotiva/pages/servicos.html')
-
-def pagamento_teste_page(request):
-    return render(request, 'loja_Automotiva/pages/pagamento_teste.html')

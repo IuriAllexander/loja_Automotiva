@@ -1,7 +1,7 @@
 {% extends 'loja_Automotiva/base.html' %}
 
 {% block title %}
-Login
+Login | Marquinhos Autopeças
 {% endblock %}
 
 {% block content %}
@@ -18,16 +18,22 @@ Login
             Faça login para acessar seus pedidos, favoritos e informações da sua conta.
         </p>
 
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                Usuário ou senha inválidos.
+            </div>
+        {% endif %}
+        
         <form class="auth-form" method="post">
 
             {% csrf_token %}
 
             <div class="input-group">
-                <label>Email</label>
+                <label>Nome de Usuário</label>
                 <input
-                    type="email"
-                    name="email"
-                    placeholder="Digite seu email"
+                    type="text"
+                    name="nome"
+                    placeholder="Digite seu nome de usuário"
                     required
                 >
             </div>

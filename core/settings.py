@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'loja_Automotiva.context_processors.categorias_menu',
             ],
         },
     },
@@ -131,3 +132,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
+# URL de login (para onde redirecionar quando @login_required falha)
+LOGIN_URL = 'login'
+
+# Para onde redirecionar após login bem-sucedido
+LOGIN_REDIRECT_URL = 'home'
+
+# Para onde redirecionar após logout
+LOGOUT_REDIRECT_URL = 'home'
