@@ -159,6 +159,7 @@ def perfil_page(request):
 @login_required
 def carrinho_page(request):
     """Renderiza a página do carrinho de compras."""
+    
     return render(request, 'loja_Automotiva/pages/carrinho.html')
 
 def contato_page(request):
