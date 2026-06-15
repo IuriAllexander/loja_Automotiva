@@ -13,7 +13,6 @@ O projeto foi desenvolvido utilizando o padrão MVC/MVT do Django, aplicando con
 | IURI ALLEXANDER DE MELO TORRES BARRETO   | @IuriAllexandder |
 | ISABELE EDUARDA BARBOSA MACÊDO           | @isabele-eduarda |
 | DANILO JOSE DA SILVA                     | @DanNiloExe |
-|ADRIAN VICTOR LACERDA DO NASCIMENTO       | @AdrianVictor88 |
 
 ## Backend
 
