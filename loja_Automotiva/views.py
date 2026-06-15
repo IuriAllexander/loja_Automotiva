@@ -92,7 +92,7 @@ def criar_usuario(request):
         form = UsuarioForm(request.POST, request.FILES)
         if form.is_valid():
             produto = form.save()
-            messages.success(request, f' {usuario.nome_usuario} cadastrado com sucesso!')
+            # messages.success(request, f' {usuario.nome_usuario} cadastrado com sucesso!')
             return redirect('categorias')
         else:
             messages.error(request, 'Corrija os erros abaixo.')
@@ -147,7 +147,7 @@ def produto_page(request, pk):
 
 def produto_base(request):
     """Renderiza o componente de cards de produtos."""
-    produtos = Produto.objects.filter(estoque__gt=1).order_by('preco')[:3]
+    produtos = Produto.objects.filter(estoque__gt=1).order_by('preco')[:5]
     contexto = {'produtos': produtos}
     return render(request, 'loja_Automotiva/components/product_card.html', contexto)
 
