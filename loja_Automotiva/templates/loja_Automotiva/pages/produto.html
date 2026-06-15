@@ -1,7 +1,146 @@
-{% extends 'loja_Automotiva/base.html'%}
-{% block title %} Produto {% endblock %}
+{% extends 'loja_Automotiva/base.html' %}
+
+{% block title %}
+Produtos
+{% endblock %}
 
 {% block content %}
 
+<section class="catalog-header">
 
+    <span class="tag">Produto</span>
+
+    <h1>Filtro de Ar Esportivo</h1>
+
+    <p>
+        Melhore a entrada de ar do motor com maior eficiência e desempenho.
+    </p>
+
+</section>
+
+<section class="profile-page">
+
+    <!-- Imagem -->
+    <div class="profile-sidebar">
+
+        <img
+            src="https://via.placeholder.com/500x400"
+            alt="Filtro de Ar Esportivo"
+            style="
+                width:100%;
+                border-radius:12px;
+                margin-bottom:20px;
+            "
+        >
+
+    </div>
+
+    <!-- Informações -->
+    <div class="profile-content">
+
+        <div class="profile-card">
+
+            <span class="tag">Performance</span>
+
+            <h2>Filtro de Ar Esportivo</h2>
+
+            <p style="margin:15px 0;">
+                Produto desenvolvido para proporcionar melhor fluxo de ar ao motor,
+                contribuindo para desempenho e eficiência.
+            </p>
+
+            <h2 style="color:#ffcc00; margin:20px 0;">
+                R$ 199,90
+            </h2>
+
+            <div style="
+                display:flex;
+                gap:15px;
+                align-items:center;
+                margin-top:20px;
+            ">
+
+                <label>Quantidade:</label>
+
+                <input
+                    type="number"
+                    value="1"
+                    min="1"
+                    style="
+                        width:80px;
+                        padding:10px;
+                        background:#1a1a1f;
+                        border:1px solid #2a2a2a;
+                        color:white;
+                        border-radius:8px;
+                    "
+                >
+
+            </div>
+
+            <button
+                class="btn-secondary"
+                style="margin-top:25px;"
+            >
+                Adicionar ao Carrinho
+            </button>
+
+        </div>
+
+        <div class="profile-card">
+
+            <h3>Descrição</h3>
+
+            <p>
+                Este filtro de ar esportivo foi projetado para aumentar a
+                eficiência da admissão de ar do motor, oferecendo excelente
+                durabilidade e resistência para uso diário ou aplicações
+                de alta performance.
+            </p>
+
+        </div>
+
+        <div class="profile-card">
+
+            <h3>Especificações Técnicas</h3>
+
+            <div class="info-grid">
+
+                <div>
+                    <strong>Marca</strong>
+                    <p>Marquinhos Racing</p>
+                </div>
+
+                <div>
+                    <strong>Categoria</strong>
+                    <p>Motor</p>
+                </div>
+
+                <div>
+                    <strong>Material</strong>
+                    <p>Algodão Sintético</p>
+                </div>
+
+                <div>
+                    <strong>Garantia</strong>
+                    <p>12 meses</p>
+                </div>
+
+                <div>
+                    <strong>Aplicação</strong>
+                    <p>Universal</p>
+                </div>
+
+                <div>
+                    <strong>Disponibilidade</strong>
+                    <p>Em estoque</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 {% endblock %}

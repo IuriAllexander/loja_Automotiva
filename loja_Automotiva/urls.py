@@ -20,4 +20,8 @@ urlpatterns = [
     path('contato/', views.contato_page, name='contato'),
 
     path('chatbot/api/', views.responder_chatbot, name='responder_chatbot'),
+
+      path('servicos/', views.servicos_page, name='servicos'),
+
+      path('pagamento_teste/', views.pagamento_teste_page, name='pagamento_teste'),
 ]

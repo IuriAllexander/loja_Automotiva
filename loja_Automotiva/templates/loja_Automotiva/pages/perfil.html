@@ -1,49 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meu Perfil | Marquinhos Autopeças</title>
-<link rel="stylesheet" href="../../static/css/style.css">
-</head>
+{% extends 'loja_Automotiva/base.html' %}
 
-<body>
+{% block title %}
+Meu Perfil
+{% endblock %}
 
-<div class="container">
+{% block content %}
 
-<header class="header">
-
-  <div class="logo">
-    Marquinhos<span>Autopeças</span>
-  </div>
-
-  <nav class="nav">
-    <a href="index.html">Início</a>
-    <a href="categorias.html">Categorias</a>
-    <a href="#">Serviços</a>
-    <a href="#">Sobre</a>
-    <a href="#">Contato</a>
-  </nav>
-
-  <div class="actions">
-
-    <a href="carrinho.html">
-      <button class="cart-btn">
-        🛒
-        <span class="cart-count">3</span>
-      </button>
-    </a>
-
-    <button>Perfil</button>
-
-  </div>
-
-</header>
 
 <section class="profile-page">
-
   <aside class="profile-sidebar">
-
     <div class="profile-avatar">
       DJ
     </div>
@@ -149,12 +114,5 @@
 
 </section>
 
-<footer class="footer">
-  <p>© 2026 Marquinhos Autopeças</p>
-  <p>Desenvolvido para alta performance automotiva 🏁</p>
-</footer>
 
-</div>
-
-</body>
-</html>
+{% endblock %}
