@@ -1,0 +1,26 @@
+     <div class="product-grid">
+          {% if produtos %}
+            {% for produto in produtos %}
+            <article class="card">
+            
+              <div class="img">
+                <!-- necessário formatar o img no css, pois a foto está estourada -->
+                <!-- {% if produto.foto %}
+                <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}">
+                {% endif%} -->
+              </div>
+
+              <span class="tag">{{ produto.categoria|title }}</span>
+
+              <h3>{{ produto.nome_produto|title }}</h3>
+
+              <p>Alta performance e segurança.</p>
+
+              <span>R$ {{ produto.preco|floatformat:2 }}</span>
+          
+            </article>
+            {% endfor %}
+          {% else %}
+            <h3>Não há novidades no momento</h3>
+          {% endif %}
+        </div>

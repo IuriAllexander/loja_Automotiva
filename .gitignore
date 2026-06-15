@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 # Ambientes virtuais
+venv/
 .venv/
 venv/
 # Arquivos de log
@@ -11,7 +12,7 @@ venv/
 local_settings.py
 *.env
 # Banco de dados SQLite
-db.sqlite3
+meubanco.sqlite3
 # Diretórios de mídia e estáticos gerados
 media/
 staticfiles/

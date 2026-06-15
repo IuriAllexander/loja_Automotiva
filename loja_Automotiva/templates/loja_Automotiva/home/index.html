@@ -1,0 +1,34 @@
+{% extends 'loja_Automotiva/base.html' %}
+
+{% block title %}
+Marquinhos Autopeças
+{% endblock %}
+
+{% block content %}
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Destaque principal">
+
+        <div class="hero-text">
+          <h1>
+            Peças automotivas de <span>ótima performance</span>
+          </h1>
+  
+          <p>
+            Encontre tudo para manutenção e upgrade do seu veículo em um só lugar.
+          </p>
+  
+          <button class="btn-secondary" aria-label="Ver produtos disponíveis">
+            Ver Produtos
+          </button>
+        </div>
+  
+      </section>
+
+<div class="product-grid">
+    {% include 'loja_Automotiva/components/product_card.html' %}
+</div>
+
+ 
+          
+{% endblock %}

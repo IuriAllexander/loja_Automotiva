@@ -1,0 +1,91 @@
+{% extends 'loja_Automotiva/base.html' %}
+
+{% block title %}
+Carrinho
+{% endblock %}
+
+{% block content %}
+
+
+<section class="cart-page">
+
+  <div class="cart-products">
+
+    <h1>Seu Carrinho</h1>
+
+    <article class="cart-item">
+
+      <div class="cart-image"></div>
+
+      <div class="cart-info">
+        <span class="tag">Freios</span>
+        <h3>Kit Freio Esportivo</h3>
+        <p>Alta performance e segurança.</p>
+      </div>
+
+      <div class="cart-quantity">
+        <button>-</button>
+        <span>1</span>
+        <button>+</button>
+      </div>
+
+      <div class="cart-price">
+        R$ 499,90
+      </div>
+
+    </article>
+
+    <article class="cart-item">
+
+      <div class="cart-image"></div>
+
+      <div class="cart-info">
+        <span class="tag">Motor</span>
+        <h3>Filtro de Ar Esportivo</h3>
+        <p>Maior fluxo de ar para o motor.</p>
+      </div>
+
+      <div class="cart-quantity">
+        <button>-</button>
+        <span>2</span>
+        <button>+</button>
+      </div>
+
+      <div class="cart-price">
+        R$ 259,80
+      </div>
+
+    </article>
+
+  </div>
+
+  <aside class="cart-summary">
+
+    <h2>Resumo do Pedido</h2>
+
+    <div class="summary-row">
+      <span>Produtos</span>
+      <span>R$ 759,70</span>
+    </div>
+
+    <div class="summary-row">
+      <span>Frete</span>
+      <span>R$ 25,00</span>
+    </div>
+
+    <div class="summary-row total">
+      <span>Total</span>
+      <span>R$ 784,70</span>
+    </div>
+
+    <a href="{% url 'pagamento_teste' %}">
+      <button class="btn-secondary">
+        Finalizar Compra
+      </button>
+    </a>
+
+  </aside>
+
+</section>
+
+{% endblock %}

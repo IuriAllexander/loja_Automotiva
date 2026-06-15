@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-do0u&l4b$m2r_ej^fh4cpl7gv8dx)sctek&s2so3wovu%wna0$
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://localhost:8000",
+    'https://*.app.github.dev',
+]
 
 # Application definition
 
@@ -38,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'loja_Automotiva',
+    'usuarios',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'loja_Automotiva.context_processors.categorias_menu',
             ],
         },
     },
@@ -75,8 +80,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'loja_automotiva',
+        'USER': 'postgres',
+        'PASSWORD': 'Postgres@123',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -115,6 +124,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL= '/media/'
+import os
+
+# URL que o navegador vai usar para acessar os arquivos
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+# Onde os arquivos de mídia (como as fotos dos produtos) vão ficar salvos
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Onde o Django vai buscar o seu arquivo CSS de 911 linhas
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# URL de login (para onde redirecionar quando @login_required falha)
+LOGIN_URL = 'login'
+
+# Para onde redirecionar após login bem-sucedido
+LOGIN_REDIRECT_URL = 'home'
+
+# Para onde redirecionar após logout
+LOGOUT_REDIRECT_URL = 'home'

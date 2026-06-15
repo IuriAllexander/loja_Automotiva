@@ -1,0 +1,118 @@
+{% extends 'loja_Automotiva/base.html' %}
+
+{% block title %}
+Meu Perfil
+{% endblock %}
+
+{% block content %}
+
+
+<section class="profile-page">
+  <aside class="profile-sidebar">
+    <div class="profile-avatar">
+      DJ
+    </div>
+
+    <h2>Danilo José</h2>
+    <p>Cliente Premium</p>
+
+    <button class="btn-secondary">
+      Editar Perfil
+    </button>
+
+    <div class="profile-menu">
+
+      <a href="#">Minha Conta</a>
+      <a href="#">Meus Pedidos</a>
+      <a href="#">Favoritos</a>
+      <a href="#">Endereços</a>
+      <a href="#">Configurações</a>
+
+    </div>
+
+  </aside>
+
+  <main class="profile-content">
+
+    <section class="profile-card">
+
+      <span class="tag">Dados Pessoais</span>
+
+      <h3>Informações da Conta</h3>
+
+      <div class="info-grid">
+
+        <div>
+          <strong>Nome</strong>
+          <p>Danilo José</p>
+        </div>
+
+        <div>
+          <strong>Email</strong>
+          <p>danilo@email.com</p>
+        </div>
+
+        <div>
+          <strong>Telefone</strong>
+          <p>(81) 99999-9999</p>
+        </div>
+
+        <div>
+          <strong>CPF</strong>
+          <p>000.000.000-00</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="profile-card">
+
+      <span class="tag">Entrega</span>
+
+      <h3>Endereço Principal</h3>
+
+      <p>
+        Rua Exemplo, 123<br>
+        Boa Viagem - Recife/PE<br>
+        CEP: 50000-000
+      </p>
+
+    </section>
+
+    <section class="profile-card">
+
+      <span class="tag">Pedidos</span>
+
+      <h3>Últimos Pedidos</h3>
+
+      <div class="order-list">
+
+        <div class="order-item">
+          <span>#000145</span>
+          <span>Kit Freio Esportivo</span>
+          <span class="status delivered">Entregue</span>
+        </div>
+
+        <div class="order-item">
+          <span>#000144</span>
+          <span>Óleo Sintético Premium</span>
+          <span class="status delivered">Entregue</span>
+        </div>
+
+        <div class="order-item">
+          <span>#000143</span>
+          <span>Bateria Moura 60Ah</span>
+          <span class="status shipping">Em Transporte</span>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</section>
+
+
+{% endblock %}

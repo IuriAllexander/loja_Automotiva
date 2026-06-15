@@ -1,0 +1,41 @@
+{% extends 'loja_Automotiva/base.html' %}
+
+{% block title %}
+Excluir produto
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-page">
+
+    <div class="auth-card">
+
+        <span class="tag">Excluir produto</span>
+
+        <h1>Exclusão de produto</h1>
+
+        <p>
+            Você tem certeza que deseja excluir o produto {{produto.nome_produto}}?
+        </p>
+
+        <form class="auth-form" method="post">
+            {% csrf_token %}
+
+            <button type="submit" class="btn-secondary">
+                Confirmar
+            </button>
+
+        </form>
+        
+        <div class="auth-footer">
+            Desistiu?
+            <a href="{% url 'produto-detalhe' produto.pk%}">
+                Voltar
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

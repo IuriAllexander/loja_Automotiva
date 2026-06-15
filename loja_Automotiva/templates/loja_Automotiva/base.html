@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Marquinhos Autopeças{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    {% include 'loja_Automotiva/components/header.html' %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+         <!-- CHATBOT AQUI -->
+
+<button id="chat-toggle" class="chat-toggle">
+    💬
+</button>
+
+<!-- CHAT -->
+<div id="chat-container" class="chat-container fechado">
+
+    <div class="chat-header">
+        <span>🤖 Marquinhos Assistente</span>
+
+        <button id="chat-fechar">
+            ✕
+        </button>
+    </div>
+
+    <div id="chat-historico" class="chat-historico">
+
+        <div class="mensagem bot">
+            Olá! Como posso ajudar você hoje?
+        </div>
+
+    </div>
+
+    <div class="chat-input-area">
+
+        <input
+            type="text"
+            id="chat-input"
+            placeholder="Digite sua mensagem..."
+        >
+
+        <button id="chat-enviar">
+            ➤
+        </button>
+
+    </div>
+
+</div>
+
+          <script>
+
+const chat = document.getElementById('chat-container');
+const abrirChat = document.getElementById('chat-toggle');
+const fecharChat = document.getElementById('chat-fechar');
+
+abrirChat.addEventListener('click', () => {
+    chat.classList.remove('fechado');
+});
+
+fecharChat.addEventListener('click', () => {
+    chat.classList.add('fechado');
+});
+
+const historico = document.getElementById('chat-historico');
+const input = document.getElementById('chat-input');
+const botaoEnviar = document.getElementById('chat-enviar');
+
+async function enviarMensagem() {
+
+    const texto = input.value.trim();
+
+    if (!texto) return;
+
+    adicionarMensagem(texto, 'usuario');
+
+    input.value = '';
+
+    try {
+
+        const response = await fetch('/chatbot/api/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                mensagem: texto
+            })
+        });
+
+        const dados = await response.json();
+
+        adicionarMensagem(
+            dados.resposta || 'Erro ao processar resposta.',
+            'bot'
+        );
+
+    } catch {
+
+        adicionarMensagem(
+            'Erro de conexão com o servidor.',
+            'bot'
+        );
+
+    }
+
+}
+
+function adicionarMensagem(texto, remetente){
+
+    const div = document.createElement('div');
+
+    div.classList.add('mensagem');
+    div.classList.add(remetente);
+
+    div.textContent = texto;
+
+    historico.appendChild(div);
+
+    historico.scrollTop = historico.scrollHeight;
+}
+
+botaoEnviar.addEventListener('click', enviarMensagem);
+
+input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') enviarMensagem();
+});
+
+</script>
+
+    {% include 'loja_Automotiva/components/footer.html' %}
+
+</body>
+</html>
