@@ -49,9 +49,9 @@
             <div class="img">
               <!-- necessário formatar o img no css, pois a foto está estourada-->
               {% if produto.foto %}
-                <a href="{%url 'produto-detalhe' produto.pk %}">
-                  <img src="{{produto.foto.url}}" alt="{{produto.nome_produto}">
-                </a>
+                  <a href="{% url 'produto-detalhe' produto.pk %}">
+                    <img src="{{produto.foto.url}}" alt="{{produto.nome_produto}" class="img">
+                  </a>
               {%endif%}
             </div>
 
